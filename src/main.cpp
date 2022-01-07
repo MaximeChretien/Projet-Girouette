@@ -1,3 +1,11 @@
+/*
+ *    @author  : Maxime Chretien (MixLeNain)
+ *    @mail    : mchretien@linuxmail.org
+ *    @project : TUT Infobus
+ *    @summary : Main
+ *    @version : v1.0
+ */
+
 #include <iostream>
 
 #include "Girouette.h"

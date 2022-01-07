@@ -1,5 +1,5 @@
 # Makefile for C++ programs
-# v1.4-SenseHat
+# v1.4-TUT
 # Made by Maxime Chretien (MixLeNain)
 
 CXX=g++

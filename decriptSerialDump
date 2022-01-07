@@ -1,0 +1,209 @@
+Encodage char : Codepage 437 / IBM PC
+
+Effacement des girouettes:	0x00 0x7e
+
+Debut:		0x00,
+Addr:		0x02 => Girouette frontale monochrome
+Nb données:	0x00, 0x01,
+Données:	0x41,
+Checksum:	0x41,
+=> Test présence girouette
+
+Debut:		0x00,
+Addr:		0x01,
+Nb données:	0x00, 0x01,
+Données:	0xff,
+Checksum:	0xff,
+=> Réponse OK
+
+Debut:		0x00,
+Msg spé:	0xf0, => Destination secondaire
+Addr:		0x02,
+Nb données:	0x00, 0x22, => 34 octets
+Données:
+	Logo ou num :	0x00, (0x00,) => Ni logo, ni num
+	Nombre de msg:	0x01,
+	Desc msg:
+		nb lignes:	0x01,
+		Desc ligne 1 msg 1:
+			Espaces entre char:	0x01,
+			Police:			0x01,
+			Décalage gauche:	0x02,
+			Décalage bas:		0x00, (0x00,)
+			Nombre de char:		0x16, => 22
+			Texte:			0x6d,	m
+						0x65,	e
+						0x73,	s
+						0x73,	s
+						0x61,	a
+						0x67,	g
+						0x65,	e
+						0x20,	space
+						0x63,	c
+						0x6f,	o
+						0x6d,	m
+						0x70,	p
+						0x6c,	l
+						0x82,	é
+						0x6d,	m
+						0x65,	e
+						0x6e,	n
+						0x74,	t
+						0x61,	a
+						0x69,	i
+						0x72,	r
+						0x65,	e
+			Type aff:		0x01, => defilant
+			Vitesse char/sec:	0x08,
+			Décalage droit:		0x28,
+			Duree aff (nb cycles):	0x01,
+			Checksum:		0x8d,
+=> Definition msg complementaire
+
+
+Debut:		0x00,
+Addr:		0x01,
+Nb donnees:	0x00, 0x01,
+Donnees:	0xff,
+Checksum:	0xff,
+=> Réponse OK
+
+Debut:		0x00,
+Addr:		0xff, => Liste couleurs
+nb donnees:	0x00, 0x40, => 64
+Donnees:
+	Nb octets:	0x40,
+	Niv Rouge 1:	0x00, (0x00,)
+	Niv Vert 1:	0x00, (0x00,)
+	Niv Bleu 1:	0x00, (0x00,)
+	=> Noir
+	Niv Rouge 2:	0x2a,
+	Niv Vert 2:	0x55,
+	Niv Bleu 2:	0x55,
+	=> Bleu/vert foncé
+	Niv Rouge 3:	0x55,
+	Niv Vert 3:	0x00, (0x00,)
+	Niv Bleu 3:	0x00, (0x00,)
+	=> Rouge foncé
+	Niv Rouge 4:	0x00, (0x00,)
+	Niv Vert 4:	0x55,
+	Niv Bleu 4:	0x00, (0x00,)
+	=> Vert foncé
+	Niv Rouge 5:	0x00, (0x00,)
+	Niv Vert 5:	0x00, (0x00,)
+	Niv Bleu 5:	0x55,
+	=> Bleu foncé
+	Niv Rouge 6:	0x3c,
+	Niv Vert 6:	0x14,
+	Niv Bleu 6:	0x00, (0x00,)
+	=> Rouge encore plus foncé avec un peu de vert
+	Niv Rouge 7:	0x1e,
+	Niv Vert 7:	0x20,
+	Niv Bleu 7:	0x00, (0x00,)
+	=> Vert rouge sombre chelou
+	Niv Rouge 8:	0x00, (0x00),
+	Niv Vert 8:	0x00, (0x00,)
+	Niv Bleu 8:	0x32,
+	=> Bleu encore plus foncé
+	Niv Rouge 9:	0x50,
+	Niv Vert 9:	0x32,
+	Niv Bleu 9:	0x00, (0x00,)
+	=> Marron
+	Niv Rouge 10:	0x3c,
+	Niv Vert 10:	0x00, (0x00,)
+	Niv Bleu 10:	0x00, (0x00,)
+	=> Rouge encore plus foncé
+	Niv Rouge 11:	0x08,
+	Niv Vert 11:	0x01,
+	Niv Bleu 11:	0x0b,
+	=> Quasi noir
+	Niv Rouge 12:	0x55,
+	Niv Vert 12:	0x05,
+	Niv Bleu 12:	0x55,
+	=> Violet foncé
+	Niv Rouge 13:	0x1a,
+	Niv Vert 13:	0x05,
+	Niv Bleu 13:	0x00, (0x00,)
+	=> Quasi noir mais visiblement un peu rouge
+	Niv Rouge 14:	0x0f,
+	Niv Vert 14:	0x4c,
+	Niv Bleu 14:	0x0a,
+	=> Vert
+	Niv Rouge 15:	0x3c,
+	Niv Vert 15:	0x12,
+	Niv Bleu 15:	0x00, (0x00,)
+	=> Rouge foncé (encore mais pas le meme)
+	Niv Rouge 16:	0x0a,
+	Niv Vert 16:	0x12,
+	Niv Bleu 16:	0x00, (0x00,)
+	=> Presque noir
+	Niv Rouge 17:	0x55,
+	Niv Vert 17:	0x0c,
+	Niv Bleu 17:	0x00, (0x00,)
+	=> Rouge foncé (encore mais visiblement pas le meme)
+	Niv Rouge 18:	0x28,
+	Niv Vert 18:	0x01,
+	Niv Bleu 18:	0x0d,
+	=> Presque noir legerement rouge
+	Niv Rouge 19:	0x15,
+	Niv Vert 19:	0x25,
+	Niv Bleu 19:	0x32,
+	=> Bleu foncé (encore ...)
+	Niv Rouge 20:	0x55,
+	Niv Vert 20:	0x12,
+	Niv Bleu 20:	0x14,
+	=> Rouge foncé ...
+	Niv Rouge 21:	0x02,
+	Niv Vert 21:	0x08,
+	Niv Bleu 21:	0x00, (0x00,)
+Checksum:	0x04,
+=> Transmission liste couleurs
+
+Debut:		0x00,
+Addr:		0xee, => Toutes girouettes
+Nb donnees:	0x00, 0x01,
+Donnees:	0xaa,
+Checksum:	0xaa,
+=> Ajustement puissance toutes girouettes en fonction de photorésistance
+
+Debut:		0x00,
+Addr:		0x02,
+Nb donnees:	0x00, 0x1b, => 27
+Donnees:
+	logo/num:	0x00, (0x00,) => no logo/num
+	Nb msg:		0x01,
+	msg 1:
+		nb ligne:	0x01,
+		Desc ligne 1:
+			Espace char:	0x01,
+			Police:		0x01,
+			Décalage gauche:	0x00, (0x00,)
+			Décalage bas:		0x00, (0x00,)
+			Nb char:		0x0f,
+			Texte:			0x45, E
+						0x6c, l
+						0x79, y
+						0x73, s
+						0x82, é
+						0x65, e
+						0x20, space
+						0x2d, -
+						0x20, space
+						0x45, E
+						0x74, t
+						0x6f, o
+						0x69, i
+						0x6c, l
+						0x65, e
+			Type:			0x01, => Défilant
+			Vitesse (char/sec):	0x06,
+			Décalage droite:	0x28,
+			Durée:			0x02, (2 cycles)
+Checksum:	0xf5,
+=> Envoie message principal
+
+Debut:		0x00,
+Addr:		0x01,
+Nb donnees:	0x00, 0x01,
+Donnees:	0xff,
+Checksum:	0xff

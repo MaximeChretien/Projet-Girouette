@@ -33,7 +33,7 @@ void Girouette::clear() {
 	_serial->send(msg, sizeof(msg));
 }
 
-bool Girouette::sendMsg(const char* text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree) {
+bool Girouette::sendMsg(const char* text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree, bool secondary) {
 	uint8_t msg[BUFF_SIZE];
 	uint8_t data[BUFF_SIZE];
 	size_t textSize = strlen(text);
@@ -82,9 +82,20 @@ bool Girouette::sendMsg(const char* text, uint8_t type, uint8_t typeArg1, uint8_
 
 	// Build message array
 	size_t pos = 0;
-	for(size_t i = 0; i < sizeof(msgBase) && pos < BUFF_SIZE; i++, pos++) {
-		msg[pos] = msgBase[i];
+
+	// Add message base
+	msg[pos] = msgBase[0];
+	pos++;
+	if(secondary) { // If secondary, add identifier
+		msg[pos] = 0xF0;
+		pos++;
 	}
+	msg[pos] = msgBase[1];
+	pos++;
+	msg[pos] = msgBase[2];
+	pos++;
+	msg[pos] = msgBase[3];
+	pos++;
 
 	for(uint i = 0; i < dataSize && pos < BUFF_SIZE; i++, pos++) {
 		uint8_t b = data[i];
@@ -109,11 +120,6 @@ bool Girouette::sendMsg(const char* text, uint8_t type, uint8_t typeArg1, uint8_
 	}
 
 	_serial->send((const uint8_t*)msg, pos+1);
-
-	return getAnswer();
-}
-
-bool Girouette::sendSpecialMsg(const char* text) {
 
 	return getAnswer();
 }

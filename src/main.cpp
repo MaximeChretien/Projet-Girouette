@@ -25,7 +25,8 @@ int main() {
 
 	gir->clear();
 	gir->sendColors(colors);
-	ok = gir->sendMsg("abcdefghijklmnopqrstuvwxyz", 0x01, 0x30, 0x28, 0x01);
+	ok = gir->sendMsg("abcdefghijklmnopqrstuvwxyz", 0x01, 0x30, 0x28, 0x01, false);
+	ok = gir->sendMsg("Coucou !", 0x01, 0x08, 0x28, 0x01, true);
 
 	cout << ok << endl;
 

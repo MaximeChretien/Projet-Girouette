@@ -172,7 +172,18 @@ void Girouette::adjPower() {
 }
 
 bool Girouette::getAnswer() {
-	//TODO
-	return true;
+	uint8_t text[6] = {0};
+	uint8_t i = 0;
+	uint8_t timeout = 0;
+
+	while(i < 6 && timeout < 10) {
+		i += _serial->receive(text, 6);
+		timeout++;
+	}
+
+	if(text[0] == 0x00 && text[1] == 0x01 && text[2] == 0x00 && text[3] == 0x01 && text[4] == 0xFF && text[5] == 0xFF)
+		return true;
+
+	return false;
 }
 

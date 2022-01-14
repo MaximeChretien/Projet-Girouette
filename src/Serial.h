@@ -20,7 +20,7 @@ public:
 	~Serial();
 
 	void send(const uint8_t* text, size_t size);
-	int receive(const uint8_t* text);
+	int receive(uint8_t* text, size_t size);
 
 private:
 	void cleanExit();

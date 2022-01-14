@@ -77,6 +77,6 @@ void Serial::send(const uint8_t* text, size_t size) {
 	write(_serial, text, size);
 }
 
-int Serial::receive(const uint8_t* text) {
-	return read(_serial, &text, sizeof(text));
+int Serial::receive(uint8_t* text, size_t size) {
+	return read(_serial, text, size);
 }

@@ -3,7 +3,7 @@
  *    @mail    : mchretien@linuxmail.org
  *    @project : TUT Infobus
  *    @summary : Main
- *    @version : v1.0
+ *    @version : v2.0
  */
 
 #include <iostream>
@@ -20,22 +20,59 @@ uint8_t colors[][3] = {
 
 int main() {
 	bool ok = false;
+	int choix;
+	bool exitBool = false;
+	string msg = "";
 	setlocale(LC_ALL, "CP437");
 	Girouette* gir = new Girouette(0x02);
 
-	gir->clear();
-	gir->sendColors(colors);
+	while(!exitBool) {
+		cout << "Menu : " << endl;
+		cout << "1. Envoyer un msg principal" << endl;
+		cout << "2. Envoyer un msg secondaire" << endl;
+		cout << "3. Remise a zero" << endl;
+		cout << "4. Envoi couleurs" << endl;
+		cout << "5. Quitter" << endl;
+		cout << "Choix : ";
+		cin >> choix;
 
-	do {
-		ok = gir->sendMsg("Hello World !", 0x01, 0x08, 0x28, 0x03, false);
-		cout << ok << endl;
-	} while(!ok);
+		switch(choix) {
+			case 1:
+				cout << "Message : ";
+				getline(cin, msg);
 
-	do {
-		ok = gir->sendMsg("Coucou toi !", 0x01, 0x04, 0x28, 0x01, true);
-		cout << ok << endl;
-	} while (!ok);
+				do {
+					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x03, false);
+				} while(!ok);
+				cout << "Envoi réussi !" << endl;
+				break;
+			case 2:
+				cout << "Message : ";
+				getline(cin, msg);
 
+				do {
+					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x01, true);
+				} while(!ok);
+				cout << "Envoi réussi !" << endl;
+				break;
+			case 3:
+				gir->clear();
+				cout << "Reset !" << endl;
+				break;
+			case 4:
+				gir->sendColors(colors);
+				cout << "Envoi réussi !" << endl;
+				break;
+			case 5:
+				exitBool = true;
+				break;
+			default:
+				cout << "Choix invalide !" << endl;
+		}
+
+		cout << endl;
+
+	}
 	delete gir;
 	exit(0);
 }

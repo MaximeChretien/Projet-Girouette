@@ -3,7 +3,7 @@
  *    @mail    : mchretien@linuxmail.org
  *    @project : TUT Infobus
  *    @summary : Definition de l'objet Girouette
- *    @version : v1.0
+ *    @version : v2.0
  */
 
 #ifndef GIROUETTE_H
@@ -12,6 +12,7 @@
 #include "Serial.h"
 
 #include <cstdint>
+#include <string>
 
 #define BUFF_SIZE 512
 
@@ -22,7 +23,7 @@ public:
 
 	bool ping();
 	void clear();
-	bool sendMsg(const char* text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree, bool secondary);
+	bool sendMsg(std::string text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree, bool secondary);
 	void sendColors(uint8_t colors[][3]);
 	void adjPower();
 

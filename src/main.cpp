@@ -7,6 +7,7 @@
  */
 
 #include <iostream>
+#include <limits>
 
 #include "Girouette.h"
 
@@ -36,11 +37,14 @@ int main() {
 		cout << "Choix : ";
 		cin >> choix;
 
+		cin.ignore ( std::numeric_limits<std::streamsize>::max(), '\n' );
+
 		switch(choix) {
 			case 1:
 				cout << "Message : ";
 				getline(cin, msg);
 
+				cout << msg << endl;
 				do {
 					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x03, false);
 				} while(!ok);

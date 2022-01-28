@@ -34,7 +34,8 @@ int main() {
 		cout << "2. Envoyer un msg secondaire" << endl;
 		cout << "3. Remise a zero" << endl;
 		cout << "4. Envoi couleurs" << endl;
-		cout << "5. Quitter" << endl;
+		cout << "5. Ping" << endl;
+		cout << "6. Quitter" << endl;
 		cout << "Choix : ";
 		cin >> choix;
 

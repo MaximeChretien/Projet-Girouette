@@ -62,6 +62,9 @@ int main() {
 				cout << "Envoi réussi !" << endl;
 				break;
 			case 5:
+				ok = gir->ping();
+				cout << "Réponse : é << ok << endl;
+			case 6:
 				exitBool = true;
 				break;
 			default:

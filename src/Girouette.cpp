@@ -12,6 +12,8 @@
 #include <iostream>
 #include <vector>
 
+using std::begin;
+using std::end;
 using std::string;
 using std::vector;
 
@@ -87,44 +89,31 @@ bool Girouette::sendMsg(string text, uint8_t type, uint8_t typeArg1, uint8_t typ
 }
 
 void Girouette::sendColors(uint8_t colors[][3]) {
-	uint8_t msg[BUFF_SIZE];
-	size_t size = sizeof(colors);
-	uint8_t msgBase[] = {0x00, 0xFF, (uint8_t)(size >> 8), (uint8_t)size};
-	uint8_t checksum = 0;
+	size_t dataSize = sizeof(colors);
+	vector<uint8_t> msg = {0x00, 0xFF, (uint8_t)(dataSize >> 8), (uint8_t)dataSize};
 
-	for(size_t i = 0; i < size; i++) {
+	// Insert colors into vector
+	for(size_t i = 0; i < dataSize/3; ++i)
+		msg.insert(msg.end(), begin(colors[i]), end(colors[i]));
+
+	// Compute checksum
+	uint8_t checksum = 0;
+	for(size_t i = 0; i < dataSize; i++) {
 		checksum ^= colors[i/3][i%3];
 	}
+	msg.push_back(checksum);
 
-	size_t pos = 0;
-	for(size_t i = 0; i < sizeof(msgBase) && pos < BUFF_SIZE; i++, pos++) {
-		msg[pos] = msgBase[i];
-	}
-
-	for(size_t i = 0; i < size && pos < BUFF_SIZE; i++, pos++) {
-		uint8_t b = colors[i/3][i%3];
-
-		msg[pos] = b;
-
-		// Send 0x00 two times
-		if(b == 0x00) {
-			pos++;
-			msg[pos] = b;
+	// Double all 0x00 in the message
+	std::vector<uint8_t>::size_type size = msg.size();
+	for (std::vector<uint8_t>::size_type i = 4; i < size; ++i) {
+		if(msg.at(i) == 0x00) {
+			msg.insert(msg.begin() +i, 0x00);
+			++size;
+			++i;
 		}
 	}
 
-
-	if(pos >= BUFF_SIZE-2)
-		throw std::runtime_error("Buffer overflow");
-
-	msg[pos] = checksum;
-	// Send 0x00 two times
-	if(checksum == 0x00) {
-		pos++;
-		msg[pos] = checksum;
-	}
-
-	_serial->send((const uint8_t*)msg, pos+1);
+	_serial->send(msg.data(), msg.size());
 }
 
 void Girouette::adjPower() {

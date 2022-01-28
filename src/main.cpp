@@ -63,7 +63,8 @@ int main() {
 				break;
 			case 5:
 				ok = gir->ping();
-				cout << "Réponse : é << ok << endl;
+				cout << "Réponse : " << ok << endl;
+				break;
 			case 6:
 				exitBool = true;
 				break;

@@ -23,6 +23,7 @@ int main() {
 	bool ok = false;
 	int choix;
 	bool exitBool = false;
+	bool secondary = false;
 	string msg = "";
 	setlocale(LC_ALL, "CP437");
 	Girouette* gir = new Girouette(0x02);
@@ -40,24 +41,17 @@ int main() {
 		cin.ignore ( std::numeric_limits<std::streamsize>::max(), '\n' );
 
 		switch(choix) {
+			case 2:
+				secondary = true;
 			case 1:
 				cout << "Message : ";
 				getline(cin, msg);
 
-				cout << msg << endl;
 				do {
-					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x03, false);
+					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x01, secondary);
 				} while(!ok);
 				cout << "Envoi réussi !" << endl;
-				break;
-			case 2:
-				cout << "Message : ";
-				getline(cin, msg);
-
-				do {
-					ok = gir->sendMsg(msg.c_str(), 0x01, 0x08, 0x28, 0x01, true);
-				} while(!ok);
-				cout << "Envoi réussi !" << endl;
+				secondary = false;
 				break;
 			case 3:
 				gir->clear();

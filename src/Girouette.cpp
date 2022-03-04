@@ -17,8 +17,8 @@ using std::end;
 using std::string;
 using std::vector;
 
-Girouette::Girouette(uint8_t addr): _addr(addr) {
-	_serial = new Serial("/dev/ttyUSB0", B9600);
+Girouette::Girouette(uint8_t addr, string serial, uint8_t baud): _addr(addr) {
+	_serial = new Serial(serial.c_str(), baud);
 }
 
 Girouette::~Girouette() {

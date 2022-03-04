@@ -18,7 +18,7 @@
 
 class Girouette {
 public:
-	Girouette(uint8_t addr);
+	Girouette(uint8_t addr, std::string serial = "/dev/ttyUSB0", uint8_t baud = B9600);
 	~Girouette();
 
 	bool ping();

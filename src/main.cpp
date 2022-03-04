@@ -26,7 +26,7 @@ int main() {
 	bool secondary = false;
 	string msg = "";
 	setlocale(LC_ALL, "CP437");
-	Girouette* gir = new Girouette(0x02);
+	Girouette* gir = new Girouette(0x02, "/dev/ttyUSB0", B9600);
 
 	while(!exitBool) {
 		cout << "Menu : " << endl;

@@ -43,7 +43,7 @@ void Girouette::clear() {
 }
 
 bool Girouette::sendMsg(string text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree, bool secondary) {
-	vector<uint8_t> msg = {0x00, _addr, 0, 0, 0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, text.size()};
+	vector<uint8_t> msg = {0x00, _addr, 0, 0, 0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, (uint8_t)text.size()};
 
 	// Add text to vector
 	msg.insert(msg.end(), text.begin(), text.end());
@@ -88,7 +88,7 @@ bool Girouette::sendMsg(string text, uint8_t type, uint8_t typeArg1, uint8_t typ
 	return getAnswer();
 }
 
-void Girouette::sendColors(uint8_t colors[][3]) {
+void Girouette::sendColors(uint8_t (*colors)[3]) {
 	size_t dataSize = sizeof(colors);
 	vector<uint8_t> msg = {0x00, 0xFF, (uint8_t)(dataSize >> 8), (uint8_t)dataSize};
 

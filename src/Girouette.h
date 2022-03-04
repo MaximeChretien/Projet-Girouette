@@ -24,7 +24,7 @@ public:
 	bool ping();
 	void clear();
 	bool sendMsg(std::string text, uint8_t type, uint8_t typeArg1, uint8_t typeArg2, uint8_t duree, bool secondary);
-	void sendColors(uint8_t colors[][3]);
+	void sendColors(uint8_t (*colors)[3]);
 	void adjPower();
 
 private:

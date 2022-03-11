@@ -1,9 +1,9 @@
 /*
- *    @author  : Maxime Chretien (MixLeNain)
+ *    @author  : Maxime Chretien
  *    @mail    : mchretien@linuxmail.org
  *    @project : TUT Infobus
  *    @summary : Definition de l'objet Girouette
- *    @version : v1.0
+ *    @version : v1.1
  */
 
 #ifndef SERIAL_H

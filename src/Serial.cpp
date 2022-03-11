@@ -1,9 +1,9 @@
 /*
- *    @author  : Maxime Chretien (MixLeNain)
+ *    @author  : Maxime Chretien
  *    @mail    : mchretien@linuxmail.org
  *    @project : TUT Infobus
  *    @summary : Implementation de l'objet Serial
- *    @version : v1.0
+ *    @version : v1.1
  */
 
 #include "Serial.h"

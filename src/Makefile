@@ -1,6 +1,6 @@
 # Makefile for C++ programs
 # v1.4-TUT
-# Made by Maxime Chretien (MixLeNain)
+# Made by Maxime Chretien
 
 CXX=g++
 CXXFLAGS=-Wall -O -std=c++17

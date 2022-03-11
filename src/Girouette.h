@@ -14,8 +14,6 @@
 #include <cstdint>
 #include <string>
 
-#define BUFF_SIZE 512
-
 class Girouette {
 public:
 	Girouette(uint8_t addr, std::string serial = "/dev/ttyUSB0", uint8_t baud = B9600);

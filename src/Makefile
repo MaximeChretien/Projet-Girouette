@@ -1,11 +1,11 @@
 # Makefile for C++ programs
-# v1.4-TUT
+# v1.5-TUT
 # Made by Maxime Chretien
 
 CXX=g++
 CXXFLAGS=-Wall -O -std=c++17
 LDFLAGS=
-DEPFLAGS=
+DEPFLAGS=-MMD
 TARGET=main
 SRCS=$(wildcard *.cpp)
 OBJS=$(SRCS:.cpp=.o)
